@@ -9,12 +9,23 @@ If you don't already have docker installed, [install Docker](https://docs.docker
 
 To build the docker image, first update the VERSION variable below (please use semantic versioning). Add a [release note](#release-notes).
 
+- Windows PowerShell setup
 ```
-VERSION="1.0.1"
+Set-Variable -Name "VERSION" -Value "1.0.2"
+$VERSION | Out-File ./tools/docker-tools/VERSION
+Set-Variable -Name "VOLUME" -Value "sean-parent.github.io"
+```
+
+- MacOS / Linux setup
+```
+VERSION="1.0.2"
 echo $VERSION > ./tools/docker-tools/VERSION
-
 VOLUME="sean-parent.github.io"
+```
 
+- Common
+
+```
 # build the base image, no-cache is used so the latest tools are installed
 docker build --no-cache --file ./tools/docker-tools/Dockerfile --target base --tag $VOLUME .
 
